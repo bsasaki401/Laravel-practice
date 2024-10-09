@@ -12,8 +12,10 @@
         <select name="author_id" id="">
             <option value="">選択してください</option>
             @foreach ($authors as $author)
-                <option value="{{ $author->id }}">{{ $author->author_name }}</option>
-            @endforeach
+                <option value="{{ $author->id }}" @if($post->author_id == $author->id) selected @endif>
+                    {{ $author->author_name }}
+                </option>
+            @endforeach 
         </select>
     </div>
     <div>
