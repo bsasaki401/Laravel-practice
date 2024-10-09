@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Author;
 
+use App\Http\Requests\PostRequest;
+
 use DB;
 use Log;
 
@@ -25,8 +27,8 @@ class PostsController extends Controller
         return view('create', compact('authors'));
     }
 
-    public function store(Request $request)
-    {
+    public function store(PostRequest $request)
+    {   
         $model = new Post();
 
         try{
@@ -50,7 +52,7 @@ class PostsController extends Controller
         return view ('show', compact('post', 'authors'));
     }
 
-    public function registEdit(Request $request, $id)
+    public function registEdit(PostRequest $request, $id)
     {
         $model = new Post();
         try{
