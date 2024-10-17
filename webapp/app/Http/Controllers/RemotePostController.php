@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Controllers\RemoteController;
 
 use Illuminate\Http\Request;
@@ -14,9 +15,7 @@ use App\Models\Post;
 class RemotePostController extends Controller
 {
     public function store(PostRequest $request)
-    {   
-        $model = new Post();
-
+    {
         try {
             DB::beginTransaction();
             $data = Post::create([
