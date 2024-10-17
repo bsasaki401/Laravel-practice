@@ -27,13 +27,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/index', [PostsController::class, 'index'])->name('index');
+    Route::get('/create', [PostsController::class, 'create'])->name('create');
+    Route::post('/create', [PostsController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [PostsController::class, 'edit'])->name('edit');
+    Route::post('/edit/{id}', [PostsController::class, 'regist'])->name('regist');
+    Route::delete('/delete/{id}', [PostsController::class, 'delete'])->name('delete');
 });
 
-Route::get('/index', [PostsController::class, 'index'])->name('index');
-Route::get('/create', [PostsController::class, 'showCreate'])->name('show.create');
-Route::post('/create', [PostsController::class, 'store'])->name('store');
-Route::get('/edit/{id}', [PostsController::class, 'showEdit'])->name('show.edit');
-Route::post('/edit/{id}', [PostsController::class, 'registEdit'])->name('regist.edit');
-Route::delete('/delete/{id}', [PostsController::class, 'delete'])->name('delete');
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -20,21 +20,21 @@ class PostsController extends Controller
         return view('index', compact('posts'));
     }
 
-    public function showCreate()
+    public function create()
     {
         $authors = Author::all();
         return view('create', compact('authors'));
     }
 
     public function store(PostRequest $request)
-    {   
+    {
         $model = new Post();
 
-        try{
+        try {
             DB::beginTransaction();
             $model->storePost($request);
             DB::commit();
-        } catch(\Exception $e){
+        } catch (\Exception $e) {
             Log::error($e);
             DB::rollback();
             return redirect()->route('index');
@@ -43,22 +43,22 @@ class PostsController extends Controller
         return redirect()->route('index');
     }
 
-    public function showEdit($id)
+    public function edit($id)
     {
         $post = Post::find($id);
         $authors = Author::all();
 
-        return view ('show', compact('post', 'authors'));
+        return view('show', compact('post', 'authors'));
     }
 
-    public function registEdit(PostRequest $request, $id)
+    public function regist(PostRequest $request, $id)
     {
         $model = new Post();
-        try{
+        try {
             DB::beginTransaction();
             $model->updatePost($request, $id);
             DB::commit();
-        } catch(\Exception $e){
+        } catch (\Exception $e) {
             Log::error($e);
             DB::rollback();
             return redirect()->route('index');
@@ -69,11 +69,11 @@ class PostsController extends Controller
     public function delete($id)
     {
         $model = new Post();
-        try{
+        try {
             DB::beginTransaction();
             $model->deletePost($id);
             DB::commit();
-        } catch(\Exception $e){
+        } catch (\Exception $e) {
             Log::error($e);
             DB::rollback();
             return redirect()->route('index');
