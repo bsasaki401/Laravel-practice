@@ -48,6 +48,7 @@ class PostsController extends Controller
         $post = Post::find($id);
         $authors = Author::all();
 
+        Log::info('Edit post:', ['post' => $post]);
         return view('show', compact('post', 'authors'));
     }
 
